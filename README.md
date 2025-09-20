@@ -8,6 +8,12 @@ As shown in the picture above, their data contains songs (song_data) and user ac
    - Build a recommendation system for users to propose songs or artists thereby enhancing user experience
    - Find out if there are usage gaps. When do people use the app less? Which time of day? Which days of week? Which month? Which year? Some periods might show a spike/decrease in usage which might correlate to new song releases or updates in the app. This could help track relationships between updates in the application and impact on usage
 
+## Code base description
+The repo contains 3 mains files
+   - **sql_queries.py** - contains all queries for creating and loading the tables
+   - **create_tables.py** - running this script allows to create all tables
+   - **etl.py** - running this script allows to load all the tables
+
 ## Database schema and ETL
 The database is made of a fact table (songplays) around which there are 4 dimension tables (time, artists, songs and users)
 <img width="912" height="644" alt="image" src="https://github.com/user-attachments/assets/a76ca7f9-8242-4ab9-bfa7-13364c1a4a2e" />
