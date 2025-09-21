@@ -8,11 +8,23 @@ As shown in the picture above, their data contains songs (song_data) and user ac
    - Build a recommendation system for users to propose songs or artists thereby enhancing user experience
    - Find out if there are usage gaps. When do people use the app less? Which time of day? Which days of week? Which month? Which year? Some periods might show a spike/decrease in usage which might correlate to new song releases or updates in the app. This could help track relationships between updates in the application and impact on usage
 
-## Code base description
-The repo contains 3 mains files
+## How to execute the project
+The repository contains 4 mains files
    - **sql_queries.py** - contains all queries for creating and loading the tables
    - **create_tables.py** - running this script allows to create all tables
-   - **etl.py** - running this script allows to load all the tables
+   - **etl.py** - running this script allows to load data from S3 into staging tables on Redshift and then process that data into your analytics tables on Redshift
+   - **dwh.cfg** - contains S3 and Redshift configurations
+
+To execute the project:
+1. Launch a redshift cluster and create an IAM role that has read access to S3.
+2. Add redshift database and IAM role info to dwh.cfg
+3. Run create_tables.py - this will create staging and analytical tables
+4. Run etl.py - this will load data into all tables
+5. Execute the analytical queries (see analytical queries section below) using the Query Editor in your AWS Redshift console
+
+create_table.py is where you'll create your fact and dimension tables for the star schema in Redshift.
+etl.py is where you'll load data from S3 into staging tables on Redshift and then process that data into your analytics tables on Redshift.
+sql_queries.py is where you'll define you SQL statements, which will be imported into the two other files above.
 
 ## Database schema and ETL
 The database is made of a fact table (songplays) around which there are 4 dimension tables (time, artists, songs and users)
