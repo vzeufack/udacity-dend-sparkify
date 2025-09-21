@@ -2,20 +2,37 @@ import configparser
 import psycopg2
 from sql_queries import create_table_queries, drop_table_queries
 
-
 def drop_tables(cur, conn):
+    """
+    Drops all tables in the database as defined in the drop_table_queries list.
+
+    Parameters:
+    cur (psycopg2.cursor): Cursor object to execute PostgreSQL commands.
+    conn (psycopg2.connection): Connection object to commit transactions.
+    """
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
+    """
+    Creates all tables in the database as defined in the create_table_queries list.
+
+    Parameters:
+    cur (psycopg2.cursor): Cursor object to execute PostgreSQL commands.
+    conn (psycopg2.connection): Connection object to commit transactions.
+    """
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def main():
+    """
+    Establishes a connection to the Redshift cluster using credentials from dwh.cfg,
+    then drops existing tables and creates new ones as defined in the SQL query lists.
+    """
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
